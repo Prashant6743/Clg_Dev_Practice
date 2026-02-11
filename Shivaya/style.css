@@ -1,0 +1,110 @@
+/* Google Fonts से 'Mukta' फोंट आयात करें */
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@600&display=swap');
+
+.shiv-text {
+    font-family: 'Mukta', sans-serif;
+    font-size: 40px;
+    color: #333;
+    text-align: center;
+    font-weight: bold;
+
+}
+
+#img{
+    display: block;
+    margin: 0 auto;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    margin-top: 50px;
+    align-content: right;
+}
+
+.marquee {
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Use   so the duplicated spans sit inline and the container width equals both copies */
+.shiv-text {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    will-change: transform;
+    animation: marquee 12s linear infinite;
+}
+.shiv-text span { flex: 0 0 auto }
+
+/* Pause on hover */
+.marquee:hover .shiv-text { animation-play-state: paused }
+
+
+
+
+
+.carousel {
+
+    &:hover .group {
+        animation-play-state: paused;
+    }
+}
+
+
+/*popping text animation */
+.popping-text {
+
+    transform: scale(0.1);
+    opacity: 0;
+    animation: pop-in 0.5s forwards;
+    font-size: 3rem;
+    text-align: center;
+    margin-top: 50px;
+}
+
+
+
+@keyframes pop-in {
+    0% {
+        transform: scale(0.1);
+        opacity: 0;
+    }
+
+    60% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+.form-btn {
+    display: inline-block;
+    margin-top: 50px;
+    align-items: center;
+    margin: 20px;
+    padding: 10px 14px;
+    background: #0b5;
+    color: #012;
+    border-radius: 6px;
+    font-weight: 600
+
+}
+
+.form-btn:hover {
+    opacity: .95
+}
+
+.mantra{
+
+    margin-top: 300px;
+    font-size: large;
+     font-family: 'Mukta', sans-serif;
+    font-size: 40px;
+    color: #333;
+    text-align: center;
+    font-weight: bold;
+}

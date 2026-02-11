@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body onload="handleLoad()">
+    <div id="section1" class="card_section">
+        <h1>DEAR, WILL YOU BE MY VALENTINE 😍 </h1>
+        <p></p>
+
+        <button onclick="handleYes(event)" id="YesButton"> Yes </button>
+        <button onclick="handleNo(event)" id="noButton"> No </button>
+
+        <div id="noResponse">
+            <p id="noResponseText"></p>
+        </div>
+    </div>
+
+    <div id="section2"   class="card_section" >
+        <h1>YAH! </h1>
+        <p>Best decision Ever </p>
+         <h1>I Love You</h1>
+
+         <br><br>
+
+        <img  id="gif" src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ3hubmxuOHlyN25ndjM0ZGI3ZzFxZTgzZ2x2OGp4enNqazZqb21yaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/KmxmoHUGPDjfQXqGgv/giphy.gif" alt="image not found">
+    </div>
+
+<script>
+function handleLoad() {
+    document.getElementById("section2").style.display = "none";
+    document.getElementById("section1").style.display = "block";
+}
+
+function handleYes(event) {
+    document.getElementById("section1").style.display = "none";
+    document.getElementById("section2").style.display = "block";
+}
+
+const noMessages = [
+    "Are you sure? Think again! 💕",
+    "Please say yes! 🙏",
+    "Don't break my heart... 💔",
+    "Maybe the next click? 😊",
+    "I'll keep asking! 💝",
+    "Yes is such a nice word... try it!",
+    "Pretty please? 🥺",
+    "You know you want to say yes! 😍",
+    "One more chance? 💖",
+    "The Yes button is right there! 👉"
+];
+
+function getRandomMessage(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+}
+const message = document.getElementById("noResponseText");
+const noButton = document.getElementById("noButton");
+
+// add for yes btn to make it sizer bigger on every click 
+const yesButton = document.getElementById("YesButton");
+let scale = 1;
+
+noButton.addEventListener("click", () => {
+    message.textContent = getRandomMessage(noMessages);
+
+    //scale of yes btn 
+    scale += 0.4; 
+    yesButton.style.transform = `scale(${scale})`; 
+    
+
+
+
+    console.log(message);
+
+});
+
+
+function handleNo(event) {
+   let targetElement = event.target;
+
+    // Once the user clicks "No", let the button move freely
+    targetElement.style.position = "absolute";
+
+    let maxX = window.innerWidth- targetElement.offsetWidth;
+    let maxY = window.innerHeight- targetElement.offsetHeight;
+    
+    let randomX = Math.floor(Math.random() * maxX);
+    let randomY = Math.floor(Math.random() * maxY);
+    
+    console.log(randomX, randomY);
+      
+    targetElement.style.left = randomX + "px";
+    targetElement.style.top = randomY + "px";
+    // document.getElementById("noButton").style.position = "fixed";
+    // document.getElementById("noButton").style.left = randomX + "px";
+    // document.getElementById("noButton").style.top = randomY + "px";
+   
+
+
+}
+
+
+
+
+  
+
+</script>
+
+
+</body>
+</html>
