@@ -1,0 +1,1 @@
+changing news headline adn background by help of time function.

@@ -1,0 +1,39 @@
+*{
+    align-items: center;
+    justify-content: center;
+}
+
+h1{
+    text-align: center;
+    color: #4221e7;
+    font-family: 'Arial', sans-serif;
+    margin-top: 40px;
+}
+
+#diceBox{
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    margin-top: 50px;
+   
+}
+
+
+#diceImg{
+    border-radius: 40px;
+}
+
+button{
+    display: block;
+    margin: 50px auto 0;
+padding: 10px 20px; 
+font-size: 18px; 
+background-color: #4221e7; 
+color: white; border: none; 
+border-radius: 5px; 
+cursor: pointer; } 
+
+
+button:hover{ 
+    background-color: #3116b8;
+}
