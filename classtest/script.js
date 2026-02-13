@@ -1,10 +1,5 @@
-// ============================================
-// SIMPLE QUIZ APP - Beginner Friendly Version
-// ============================================
 
-// ----- 1. OUR QUESTIONS -----
-// Each question has: the question text, 4 options, and which option is correct (0, 1, 2, or 3)
-var questions = [
+let questions = [
     { question: "q1 ", options: ["a", "b", " c", "d"], correctIndex: 1 },
     { question: "q2", options: ["a", "b", " c", "d"], correctIndex: 1 },
     { question: "q3", options: ["a", "b", " c", "d"], correctIndex: 1 },
@@ -13,25 +8,25 @@ var questions = [
   ];
   
   
-  var currentQuestion = 0;   
-  var timeLeft = 90;         
-  var myTimer = null;        
-  var userChoice = null;     
-  var alreadySubmitted = false; 
-  var timePerQuestion = 4; 
+  let currentQuestion = 0;   
+  let timeLeft = 90;         
+  let myTimer = null;        
+  let userChoice = null;     
+  let alreadySubmitted = false; 
+  let timePerQuestion = 4; 
   
   
-  var startScreen = document.getElementById("start-screen");
-  var quizScreen = document.getElementById("quiz-screen");
-  var resultsScreen = document.getElementById("results-screen");
-  var questionBox = document.getElementById("question");
-  var optionsBox = document.getElementById("options");
-  var timerBox = document.getElementById("timer");
-  var progressBar = document.getElementById("progress-bar");
-  var nextBtn = document.getElementById("next-btn");
-  var finalScoreBox = document.getElementById("final-score");
-  var startBtn = document.getElementById("start-btn");
-  var restartBtn = document.getElementById("restart-btn");
+  let startScreen = document.getElementById("start-screen");
+  let quizScreen = document.getElementById("quiz-screen");
+  let resultsScreen = document.getElementById("results-screen");
+  let questionBox = document.getElementById("question");
+  let optionsBox = document.getElementById("options");
+  let timerBox = document.getElementById("timer");
+  let progressBar = document.getElementById("progress-bar");
+  let nextBtn = document.getElementById("next-btn");
+  let finalScoreBox = document.getElementById("final-score");
+  let startBtn = document.getElementById("start-btn");
+  let restartBtn = document.getElementById("restart-btn");
   
   
   startBtn.onclick = function() {
@@ -64,31 +59,29 @@ var questions = [
     nextBtn.disabled = true;   
   
 
-    var questionData = questions[currentQuestion];
+    let questionData = questions[currentQuestion];
   
   
-    var questionNumber = currentQuestion + 1;  
+    let questionNumber = currentQuestion + 1;  
     questionBox.innerHTML = questionNumber + ". " + questionData.question;
   
     
     optionsBox.innerHTML = "";
   
   
-    for (var i = 0; i < questionData.options.length; i++) {
+    for (let i = 0; i < questionData.options.length; i++) {
      
-      var label = document.createElement("label");
+      let label = document.createElement("label");
       label.className = "option";
   
-      var radio = document.createElement("input");
+      let radio = document.createElement("input");
       radio.type = "radio";
       radio.name = "answer";   
       radio.value = i;       
   
-          radio.onclick = function() {
-        userChoice = parseInt(this.value, 10); 
-        nextBtn.disabled = false;
-      };
-  
+      radio.addEventListener("change", function() {
+        userChoice = Number(this.value);
+      });
   
       label.appendChild(radio);
       label.appendChild(document.createTextNode(questionData.options[i]));
@@ -125,7 +118,7 @@ var questions = [
     alreadySubmitted = true;
     stopTimer();
   
-    var questionData = questions[currentQuestion];
+    let questionData = questions[currentQuestion];
   
     
     currentQuestion = currentQuestion + 1;
