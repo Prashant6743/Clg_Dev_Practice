@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List</title>
+</head>
+
+<body>
+    <div>
+        <h3>ToDo List</h3>
+        <input type="number" placeholder="Task id" id="taskId" required>
+        <br>
+        <input type="text" placeholder="Task Title" id="taskTitle" required>
+        <br>
+        <button id="addButton" onclick="handleTask()" title="Add Task">Add</button>
+
+        <ul id="taskList"></ul>
+    </div>
+
+    <script>
+        let taksListArr = [];
+
+
+        function handleTask() {
+            let ipId = document.getElementById("taskId");
+            let ipTitle = document.getElementById("taskTitle");
+
+            // Validation
+            let idVal = parseInt(ipId.value);
+            let titleVal = ipTitle.value.trim();
+
+            console.log(idVal, titleVal);
+
+            if (idVal < 1 || !idVal || !titleVal) {
+                alert("Invalid Fields");
+                return;
+            }
+
+            taksListArr.push({ id: idVal, title: titleVal, status: "Pending" });
+
+            renderList();
+
+        }
+
+        // Clear Screen && Task List Re-Render
+        function renderList() {
+            let taskList = document.getElementById("taskList");
+            taskList.innerHTML = "";
+
+            taksListArr.map((task, index) => {
+                let listItem = document.createElement("li");
+                let buttonText = "";
+                let btnStyle = "";
+
+                if (task.status == "Pending") {
+                    buttonText = "Mark Completed";
+                    btnStyle = "none";
+                } else {
+                    buttonText = "Undo";
+                    btnStyle = "line-through";
+                }
+
+                listItem.innerHTML = `<div>
+                        <b>${task.id}</b> 
+                        <p id="taskData-${index}">${task.title}</p>   
+                        <span><button id="edit${index}"  title = "Edit Task" onclick = "handleEdit(${index})">Edit</button></span>
+                        <span><button id="delete${index}" title = "Delete Task" onclick = "handleDelete(${index})">Delete</button></span>
+                        <br>
+                        <button style="text-decoration:"${btnStyle}"" id="statusButton-${index}" onclick="handleStatus(${index})">${buttonText}</button>
+                    </div>`;
+
+                let listId = `item-${index}`;
+
+                listItem.setAttribute("id", listId);
+                taskList.appendChild(listItem);
+
+            })
+
+            document.getElementById("taskId").value = "";
+            document.getElementById("taskTitle").value = "";
+
+
+            console.log(taksListArr);
+
+        }
+
+        function handleDelete(index) {
+            taksListArr.splice(index, 1);
+            renderList();
+        }
+
+
+
+        function handleEdit(index) {
+            let updatedVal = prompt("Enter the updated data");
+
+            let task = document.getElementById(`taskData-${index}`);
+            console.log(task);
+
+            if (updatedVal.trim() == "") {
+                alert("Inavlid Input");
+
+            } else {
+                task.innerText = updatedVal;
+            }
+            renderList();
+        }
+
+        function handleStatus(index) {
+            if (taksListArr[index].status == "Pending") {
+                document.getElementById(`taskData-${index}`).style.textDecoration = "line-through";
+                document.getElementById(`statusButton-${index}`).innerText = "Undo";
+
+                taksListArr[index].status = "Completed";
+            } else {
+                document.getElementById(`taskData-${index}`).style.textDecoration = "none";
+                document.getElementById(`statusButton-${index}`).innerText = "Mark Completed";
+
+                taksListArr[index].status = "Pending";
+            }
+            // renderList();
+        }
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
